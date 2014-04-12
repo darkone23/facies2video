@@ -1,4 +1,23 @@
-(function($, webm) {
+(function($) {
+
+    function loadScript(url, callback) {
+	// from http://stackoverflow.com/a/756526
+	var head = document.getElementsByTagName("head")[0];
+	var script = document.createElement("script");
+	script.src = url;
+	var done = false;
+	script.onload = script.onreadystatechange = function() {
+	    if (!done && ( !this.readyState 
+			   || this.readyState == "loaded" 
+			   || this.readyState == "complete")) {
+		done = true;
+		callback();
+		head.removeChild( script );
+	    }
+	};
+
+	head.appendChild(script);
+    }
 
     function getJpegURLs() {
 	return $("#chat-list > li > img").map(function() {
@@ -20,7 +39,7 @@
     function faciesToVideoBlobURL(framerate) {
 	var jpegs = getJpegURLs(),
 	webps = jpegs.map(jpegToWebP),
-	blob = webm.fromImageArray(webps, framerate);
+	blob = Whammy.fromImageArray(webps, framerate);
 	return URL.createObjectURL(blob);
     }
 
@@ -110,6 +129,8 @@
 	mountNode.appendChild(modal);
     }
 
-    mountModal(document.body);
+    loadScript("https://raw.githubusercontent.com/antimatter15/whammy/master/whammy.js", function() {
+	mountModal(document.body);
+    });
 
-})(jQuery, Whammy);
+})(jQuery);
