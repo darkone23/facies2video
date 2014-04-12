@@ -1,0 +1,3 @@
+- Render in a modal instead of over the most recent message
+- Take framerate value from input in modal instead of alert
+- Have 'save' button
