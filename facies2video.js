@@ -3,7 +3,7 @@
     function getJpegURLs() {
 	return $("#chat-list > li > img").map(function() {
 	    return $(this).attr("src");
-	}).get();
+	}).get().reverse();
     }
 
     function jpegToWebP(jpegURL) {
@@ -28,6 +28,7 @@
 	var video = document.createElement("video");
 	video.loop = "loop";
 	video.autoplay = "autoplay";
+	video.controls = "controls";
 	video.src = src;
 	return video;
     }
