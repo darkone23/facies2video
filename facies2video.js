@@ -40,17 +40,40 @@
     }
 
     function mountModal(mountNode) {
-	var controls = $("<div class=controls>select framerate: <button class=fps>5</button><button class=fps>10</button><button class=fps>30</button><button class=close /></div>"),
-	    video = $("<div class=video />")
-	    modal = $("<div />"),
-	    close = controls.find("button.close");
+	var modal = document.createElement("div"),
+	    controls = document.createElement("div"),
+	    framerateText = document.createElement("span"),
+	    framerate5 = document.createElement("button"),
+	    framerate10 = document.createElement("button"),
+	    framerate30 = document.createElement("button")
+	    close = document.createElement("button"),
+	    video = document.createElement("div");
+
+	controls.id = "controls";
+	video.id = "video";
+	close.id = "close";
+
+	framerate5.innerText = "5";
+	framerate10.innerText = "10";
+	framerate30.innerText = "30";
+
+	controls.appendChild(framerateText);
+	controls.appendChild(framerate5);
+	controls.appendChild(framerate10);
+	controls.appendChild(framerate30);
+	controls.appendChild(close);
+	modal.appendChild(controls);
+	modal.appendChild(video);
+
+	close = $(close);
+	controls = $(controls);
 
 	close.text("✖");
 	close.css({
 	    "float": "right"
 	});
 	close.on("click", function(e) {
-	    modal.remove();
+	    $(modal).remove();
 	});
 
 	controls.css({
@@ -61,13 +84,13 @@
 	});
 	controls.on("click", "button.fps", function(e) {
 	    var buttonText = $(this).text(),
-	        framerate = parseInt(buttonText, 10),
-	        el = video.get(0);
-	    video.empty();
-	    renderFaciesVideo(el, framerate);
+	        framerate = parseInt(buttonText, 10);
+	    if (isNaN(framerate)) return;
+	    $(video).empty();
+	    renderFaciesVideo(video, framerate);
 	});
 
-	modal.css({
+	$(modal).css({
 	    "position": "absolute",
 	    "width": "300px",
 	    "height": "325px",
@@ -79,9 +102,8 @@
 	    "left": "50%",
 	    "margin-left": "-150px"
 	});
-	modal.append(controls);
-	modal.append(video);
-	mountNode.appendChild(modal.get(0));
+
+	mountNode.appendChild(modal);
     }
 
     mountModal(document.body);
