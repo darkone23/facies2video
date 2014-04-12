@@ -33,31 +33,57 @@
 	return video;
     }
 
-    function mountFaciesVideo(mount, framerate) {
+    function renderFaciesVideo(mount, framerate) {
 	var videoBlob = faciesToVideoBlobURL(framerate),
 	video = createVideo(videoBlob);
 	mount.appendChild(video);
     }
 
-    function mountIntoAdspace(framerate) {
-	var ad = $("#chat-list > li:first-child"),
-	    el = ad.get(0);
-	ad.empty();
-	mountFaciesVideo(el, framerate);
+    function mountModal(mountNode) {
+	var controls = $("<div class=controls>select framerate: <button class=fps>5</button><button class=fps>10</button><button class=fps>30</button><button class=close /></div>"),
+	    video = $("<div class=video />")
+	    modal = $("<div />"),
+	    close = controls.find("button.close");
+
+	close.text("x");
+	close.css({
+	    "float": "right"
+	});
+	close.on("click", function(e) {
+	    modal.remove();
+	});
+
+	controls.css({
+	    "padding": "10px",
+	    "height": "25px",
+	    "box-style": "border-box",
+	    "border-bottom": "2px solid black"
+	});
+	controls.on("click", "button.fps", function(e) {
+	    var buttonText = $(this).text(),
+	        framerate = parseInt(buttonText, 10),
+	        el = video.get(0);
+	    video.empty();
+	    renderFaciesVideo(el, framerate);
+	});
+
+	modal.css({
+	    "position": "absolute",
+	    "width": "300px",
+	    "height": "325px",
+            "margin": "0",
+	    "padding": "0",
+	    "display": "block",
+	    "background-color": "hotpink",
+	    "box-style": "border-box",
+	    "left": "50%",
+	    "margin-left": "-150px"
+	});
+	modal.append(controls);
+	modal.append(video);
+	mountNode.appendChild(mountNode);
     }
 
-    function getFramerate() {
-	var userInput = prompt("How many frames per second?"),
-	    framerate = parseInt(userInput, 10);
-	if (isNaN(framerate)) {
-	    alert("Whoops, must specify a number");
-	}
-	return framerate;
-    }
-
-    var framerate = getFramerate();
-    if (framerate) {
-	mountIntoAdspace(framerate);
-    }
+    mountModal(document.body);
 
 })(jQuery, Whammy);
