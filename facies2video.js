@@ -1,7 +1,7 @@
 (function($, webm) {
 
     function getJpegURLs() {
-	return $("li > img").map(function() {
+	return $("#chat-list > li > img").map(function() {
 	    return $(this).attr("src");
 	}).get();
     }
@@ -38,6 +38,25 @@
 	mount.appendChild(video);
     }
 
-    // todo: actually mount the video
+    function mountIntoAdspace(framerate) {
+	var ad = $("#chat-list > li:first-child"),
+	    el = ad.get(0);
+	ad.empty();
+	mountFaciesVideo(el, framerate);
+    }
+
+    function getFramerate() {
+	var userInput = prompt("How many frames per second?"),
+	    framerate = parseInt(userInput, 10);
+	if (isNaN(framerate)) {
+	    alert("Whoops, must specify a number");
+	}
+	return framerate;
+    }
+
+    var framerate = getFramerate();
+    if (framerate) {
+	mountIntoAdspace(framerate);
+    }
 
 })(jQuery, Whammy);
