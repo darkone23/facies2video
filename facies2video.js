@@ -45,7 +45,7 @@
 	    modal = $("<div />"),
 	    close = controls.find("button.close");
 
-	close.text("x");
+	close.text("✖");
 	close.css({
 	    "float": "right"
 	});
@@ -74,14 +74,14 @@
             "margin": "0",
 	    "padding": "0",
 	    "display": "block",
-	    "background-color": "hotpink",
+	    "background-color": "deepskyblue",
 	    "box-style": "border-box",
 	    "left": "50%",
 	    "margin-left": "-150px"
 	});
 	modal.append(controls);
 	modal.append(video);
-	mountNode.appendChild(mountNode);
+	mountNode.appendChild(modal.get(0));
     }
 
     mountModal(document.body);
