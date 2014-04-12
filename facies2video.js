@@ -53,6 +53,7 @@
 	video.id = "video";
 	close.id = "close";
 
+	framerateText.innerText = "select framerate"
 	framerate5.innerText = "5";
 	framerate10.innerText = "10";
 	framerate30.innerText = "30";
@@ -82,7 +83,10 @@
 	    "box-style": "border-box",
 	    "border-bottom": "2px solid black"
 	});
-	controls.on("click", "button.fps", function(e) {
+	controls.find("button").css({
+	    "cursor": "pointer"
+	});
+	controls.on("click", "button", function(e) {
 	    var buttonText = $(this).text(),
 	        framerate = parseInt(buttonText, 10);
 	    if (isNaN(framerate)) return;
