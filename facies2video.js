@@ -65,7 +65,8 @@
 	    framerate1 = document.createElement("button"),
 	    framerate5 = document.createElement("button"),
 	    framerate10 = document.createElement("button"),
-	    framerate1000 = document.createElement("button")
+	    framerate25 = document.createElement("button")
+	    framerate500 = document.createElement("button")
 	    close = document.createElement("button"),
 	    video = document.createElement("div");
 
@@ -77,13 +78,15 @@
 	framerate1.innerText = "1";
 	framerate5.innerText = "5";
 	framerate10.innerText = "10";
-	framerate1000.innerText = "1000";
+        framerate25.innerText = "25";
+	framerate500.innerText = "500";
 
 	controls.appendChild(framerateText);
 	controls.appendChild(framerate1);
 	controls.appendChild(framerate5);
 	controls.appendChild(framerate10);
-	controls.appendChild(framerate1000);
+	controls.appendChild(framerate25);
+	controls.appendChild(framerate500);
 	controls.appendChild(close);
 	modal.appendChild(controls);
 	modal.appendChild(video);
