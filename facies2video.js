@@ -62,9 +62,10 @@
 	var modal = document.createElement("div"),
 	    controls = document.createElement("div"),
 	    framerateText = document.createElement("span"),
+	    framerate1 = document.createElement("button"),
 	    framerate5 = document.createElement("button"),
 	    framerate10 = document.createElement("button"),
-	    framerate30 = document.createElement("button")
+	    framerate1000 = document.createElement("button")
 	    close = document.createElement("button"),
 	    video = document.createElement("div");
 
@@ -72,15 +73,17 @@
 	video.id = "video";
 	close.id = "close";
 
-	framerateText.innerText = "select framerate"
+	framerateText.innerText = "framerate"
+	framerate1.innerText = "1";
 	framerate5.innerText = "5";
 	framerate10.innerText = "10";
-	framerate30.innerText = "30";
+	framerate1000.innerText = "1000";
 
 	controls.appendChild(framerateText);
+	controls.appendChild(framerate1);
 	controls.appendChild(framerate5);
 	controls.appendChild(framerate10);
-	controls.appendChild(framerate30);
+	controls.appendChild(framerate1000);
 	controls.appendChild(close);
 	modal.appendChild(controls);
 	modal.appendChild(video);
