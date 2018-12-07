@@ -135,7 +135,7 @@
 	mountNode.appendChild(modal);
     }
 
-    loadScript("https://rawgit.com/antimatter15/whammy/master/whammy.js", function() {
+    loadScript("https://cdn.jsdelivr.net/gh/antimatter15/whammy/whammy.js", function() {
 	mountModal(document.body);
     });
 

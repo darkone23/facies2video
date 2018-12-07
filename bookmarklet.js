@@ -1,1 +1,1 @@
-var head = document.getElementsByTagName("head")[0], script = document.createElement("script"); script.src = "https://rawgit.com/eggsby/facies2video/master/facies2video.js"; head.appendChild(script);
+var head = document.getElementsByTagName("head")[0], script = document.createElement("script"); script.src = "https://cdn.jsdelivr.net/gh/eggsby/facies2video/facies2video.js"; head.appendChild(script);
